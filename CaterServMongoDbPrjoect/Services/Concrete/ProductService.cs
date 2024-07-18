@@ -46,30 +46,34 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             return _mapper.Map<ResultProductDto>(value);
         }
 
-        public Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategories()
+        public async Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategories()
         {
-            var ProductValues = _productCollection.AsQueryable().ToList();
-            var CategoryValues = _categoryCollection.AsQueryable().ToList();
+            var ProductValues = await _productCollection.AsQueryable().ToListAsync();
+            var CategoryValues = await _categoryCollection.AsQueryable().ToListAsync();
+
             List<ResultProductWithCategoriesDto> result = new List<ResultProductWithCategoriesDto>();
             foreach (var item in ProductValues)
             {
-                var categories = _categoryCollection.Find(x => x.CategoryId == item.ProductId);
-                var mappedValue = _mapper.Map<ResultCategoryDto>(categories);
-                result.Add(new ResultProductWithCategoriesDto
+                var categories = _categoryCollection.Find(x => x.CategoryId == item.CategoryId).FirstOrDefault();
+
+                if (categories != null)
                 {
-                    Description = item.Description, 
-                    ImageURL = item.ImageURL,
-                    Price = item.Price,
-                    ProductId = item.ProductId,
-                    ProductName = item.ProductName,
-                    Category = mappedValue,
+                    var mappedValue = _mapper.Map<ResultCategoryDto>(categories);
 
-                });
+                    result.Add(new ResultProductWithCategoriesDto
+                    {
+                        Description = item.Description,
+                        ImageURL = item.ImageURL,
+                        Price = item.Price,
+                        ProductId = item.ProductId,
+                        ProductName = item.ProductName,
+                        Category = mappedValue,
 
+                    });
+                }
+             
             }
-
-
-            throw new NotImplementedException();
+            return result;
         }
 
         public async Task UpdateProduct(UpdateProductDto productdto)

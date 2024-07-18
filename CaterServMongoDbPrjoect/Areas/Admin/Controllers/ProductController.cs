@@ -33,7 +33,7 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
                                                select new SelectListItem
                                                {
                                                    Text = x.CategoryName,
-                                                   Value = x.CategoryName,
+                                                   Value = x.CategoryId.ToString(),
                                                }).ToList();
             ViewBag.Categories = categories;
             return View();
@@ -54,7 +54,7 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
                                                select new SelectListItem
                                                {
                                                    Text = x.CategoryName,
-                                                   Value = x.CategoryName,
+                                                   Value = x.CategoryId,
                                                }).ToList();
             ViewBag.Categories = categories;
 
