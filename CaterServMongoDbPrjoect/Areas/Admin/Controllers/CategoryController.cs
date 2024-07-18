@@ -1,4 +1,5 @@
-﻿using CaterServMongoDbPrjoect.Dtos.CategoryDtos;
+﻿using AutoMapper;
+using CaterServMongoDbPrjoect.Dtos.CategoryDtos;
 using CaterServMongoDbPrjoect.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-
-        public CategoryController(ICategoryService categoryService)
+        private readonly IMapper _mapper;
+ 
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -38,7 +41,8 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateCategory(string id)
         {
             var value = await _categoryService.GetCategoryById(id);
-            return View(value);
+            var mappedValues = _mapper.Map<UpdateCategoryDto>(value);
+            return View(mappedValues);
         }
 
         [HttpPost]

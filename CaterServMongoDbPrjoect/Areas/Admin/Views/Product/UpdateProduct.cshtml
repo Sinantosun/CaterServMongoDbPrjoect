@@ -1,0 +1,27 @@
+﻿@model UpdateProductDto
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1> Ürün Güncelleme Sayfası</h1>
+
+<form method="post">
+    <label>Ürün Adı</label>
+    <input type="hidden" class="form-control" asp-for="ProductId" />
+    <input type="text" class="form-control" asp-for="ProductName" />
+    <br />
+    <label>Resim</label>
+    <input type="text" class="form-control" asp-for="ImageURL" />
+    <br />
+    <label>Fiyat</label>
+    <input type="text" class="form-control" asp-for="Price" />
+    <br />
+    <label>Açıklama</label>
+    <input type="text" class="form-control" asp-for="Description" />
+    <br />
+    <label>kategori</label>
+    <select asp-for="CategoryName" asp-items="@ViewBag.Categories" class="form-control"></select>
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+

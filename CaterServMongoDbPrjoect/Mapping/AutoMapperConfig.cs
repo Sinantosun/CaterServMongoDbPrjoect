@@ -17,6 +17,10 @@ namespace CaterServMongoDbPrjoect.Mapping
             CreateMap<Product, ResultProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
 
+            CreateMap<ResultCategoryDto, UpdateCategoryDto>().ReverseMap();
+            CreateMap<ResultProductDto, UpdateProductDto>().ReverseMap();
+
+
         }
 
 

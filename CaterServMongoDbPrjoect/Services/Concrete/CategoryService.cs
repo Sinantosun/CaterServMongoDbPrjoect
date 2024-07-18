@@ -17,8 +17,6 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _categoryCollection = database.GetCollection<Category>(dataBaseSettings.CategoryCollectionName);
-
-
             _mapper = mapper;
         }
 
@@ -39,10 +37,10 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             return _mapper.Map<List<ResultCategoryDto>>(values);
         }
 
-        public async Task<UpdateCategoryDto> GetCategoryById(string id)
+        public async Task<ResultCategoryDto> GetCategoryById(string id)
         {
             var value = await _categoryCollection.Find(x=>x.CategoryId == id).FirstOrDefaultAsync();
-            return _mapper.Map<UpdateCategoryDto>(value);
+            return _mapper.Map<ResultCategoryDto>(value);
         }
 
         public async Task UpdateCategory(UpdateCategoryDto category)
