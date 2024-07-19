@@ -2,38 +2,52 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
 }
 
-<h1>Ürünlerin Listeleri..</h1>
-<br />
 
-<table class="table table-bordered">
-    <tr>
-        <td>#</td>
-        <td>Resim</td>
-        <td>Ürün Adı</td>
-        <td>Ürün Açıklaması</td>
-        <td>Ürün Fiyat</td>
-        <td colspan="2">İşlemler</td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        count++;
-        <tr>
-            <th>@count</th>
-            <td><img src="@item.ImageURL" style="width:75px; height:75px;"  /></td>
-            <td>@item.ProductName</td>
-            <td>@item.Description</td>
-            <td>@item.Price ₺</td>
-            <td>@item.Category.CategoryName</td>
-  
-            <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-outline-danger">Sil</a></td>
-            <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-outline-success">Güncelle</a></td>
-        </tr>
-    }
-</table>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Ürün Listesi</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-muted table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Resim</td>
+                            <td>Ürün Adı</td>
+                            <td>Ürün Açıklaması</td>
+                            <td>Ürün Fiyat</td>
+                            <td>Ürün Kategorisi</td>
+                            <td colspan="2" class="text-center">İşlemler</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <th>@count</th>
+                                <td><img src="@item.ImageURL" style="width:75px; height:75px;" /></td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Description</td>
+                                <td>@item.Price ₺</td>
+                                <td>@item.Category.CategoryName</td>
 
-<br />
-<a href="/Admin/Product/AddProduct" class="btn btn-outline-info">Yeni Ürün Oluştur</a>
+                                <td class="text-center"><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-outline-danger "><i class="fa fa-trash "></i> Sil</a></td>
+                                <td class="text-center"><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-outline-success"><i class="fa fa-edit "></i> Güncelle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <a href="/Admin/Product/AddProduct" class="btn btn-outline-primary"> <i class="fa fa-pencil "></i> Yeni Ürün Oluştur</a>
+            </div>
+        </div>
+    </div>
+</div>
+
