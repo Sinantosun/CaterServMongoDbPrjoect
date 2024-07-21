@@ -1,0 +1,21 @@
+﻿### CaterServMongoDb Projesi Yapilacaklar
+
+One Cikan Alani. -- admin tarafı tamam.
+
+Hakkimizda Alani. -- admin tarafı tamam.
+
+Hizmetlerimiz Alani. -- admin tarafı tamam.
+
+Etkinliklerimiz Alani.
+
+Kategoriler ve Urunler Alani.
+
+Booking Alani : Ulke sehir yerine il ilce olabilir ve  dropdownlist degil elle yazilsin , etkinlik turu dropdownlist olsun veri tabanindan gelsin , vegeterian alani boolean tutulabilir , submit denildigi zaman sweetalert gelebilir.
+
+Ascilarimiz Alani.
+
+Testimonial Alani.
+
+Iletisim Bilgileri ve Mesaj Gonderme Alani.
+
+Istatistk degerleri statik olabilir.Blog Alanina Gerek Yok.

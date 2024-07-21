@@ -1,3 +1,4 @@
+using CaterServMongoDbPrjoect.EventCategorys.Concrete;
 using CaterServMongoDbPrjoect.Services.Abstract;
 using CaterServMongoDbPrjoect.Services.Concrete;
 using CaterServMongoDbPrjoect.Settings;
@@ -10,6 +11,13 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("D
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IFeatureService, FeatureService>();
+builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddScoped<IServicesService, ServicesService>();
+builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IEventCategoryService, EventCategoryService>();
+builder.Services.AddScoped<ICheffService, CheffService>();
 
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 {

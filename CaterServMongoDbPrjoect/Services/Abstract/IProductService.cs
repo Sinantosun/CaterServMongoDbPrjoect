@@ -5,13 +5,13 @@ namespace CaterServMongoDbPrjoect.Services.Abstract
 {
     public interface IProductService
     {
-        Task<List<ResultProductDto>> GetAllProduct();
-        Task<ResultProductDto> GetProductById(string id);
-        Task UpdateProduct(UpdateProductDto productdto);
-        Task CreateProduct(CreateProductDto productdto);
-        Task DeleteProduct(string id);
+        Task<List<ResultProductDto>> GetAllProductAsync();
+        Task<ResultProductDto> GetProductByIdAsync(string id);
+        Task UpdateProductAsync(UpdateProductDto productdtoDto);
+        Task CreateProductAsync(CreateProductDto productdtoDto);
+        Task DeleteProductAsync(string id);
 
-        Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategories();
+        Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategoriesAsync();
 
     }
 }

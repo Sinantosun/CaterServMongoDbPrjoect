@@ -15,6 +15,6 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
 
         public string CategoryId { get; set; }
         [BsonIgnore]
-        public string Category { get; set; }
+        public Category Category { get; set; }
     }
 }

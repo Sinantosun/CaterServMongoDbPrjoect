@@ -1,0 +1,27 @@
+﻿@model CreateEventCategoryDto
+@{
+    ViewData["Title"] = "CreateEventCategory";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Yeni Kategori Oluşturma Sayfası</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form text-muted">
+                    <form method="post">
+                        <label>Kategori Adı</label>
+                        <input type="text" class="form-control" asp-for="CategoryName" />
+                        <br />
+                        <button class="btn btn-outline-primary"><i class="fa fa-pencil"></i> Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

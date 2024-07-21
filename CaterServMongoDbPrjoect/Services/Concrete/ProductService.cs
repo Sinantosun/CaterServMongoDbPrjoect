@@ -21,18 +21,18 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             _categoryCollection = database.GetCollection<Category>(dataBaseSettings.CategoryCollectionName);
             _mapper = mapper;
         }
-        public async Task CreateProduct(CreateProductDto productdto)
+        public async Task CreateProductAsync(CreateProductDto productDto)
         {
-            var mappedValue = _mapper.Map<Product>(productdto);
+            var mappedValue = _mapper.Map<Product>(productDto);
             await _productCollection.InsertOneAsync(mappedValue);
         }
 
-        public async Task DeleteProduct(string id)
+        public async Task DeleteProductAsync(string id)
         {
             await _productCollection.DeleteOneAsync(x=>x.ProductId==id);
         }
 
-        public async Task<List<ResultProductDto>> GetAllProduct()
+        public async Task<List<ResultProductDto>> GetAllProductAsync()
         {
             var values = await _productCollection.AsQueryable().ToListAsync();
             return _mapper.Map<List<ResultProductDto>>(values);
@@ -40,16 +40,16 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
        
 
-        public async Task<ResultProductDto> GetProductById(string id)
+        public async Task<ResultProductDto> GetProductByIdAsync(string id)
         {
             var value = await _productCollection.Find(x => x.ProductId == id).FirstOrDefaultAsync();
             return _mapper.Map<ResultProductDto>(value);
         }
 
-        public async Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategories()
+        public async Task<List<ResultProductWithCategoriesDto>> GetProductsListAndCategoriesAsync()
         {
             var ProductValues = await _productCollection.AsQueryable().ToListAsync();
-            var CategoryValues = await _categoryCollection.AsQueryable().ToListAsync();
+ 
 
             List<ResultProductWithCategoriesDto> result = new List<ResultProductWithCategoriesDto>();
             foreach (var item in ProductValues)
@@ -76,10 +76,10 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             return result;
         }
 
-        public async Task UpdateProduct(UpdateProductDto productdto)
+        public async Task UpdateProductAsync(UpdateProductDto productDto)
         {
-            var value = _mapper.Map<Product>(productdto);
-            await _productCollection.FindOneAndReplaceAsync(x => x.ProductId == productdto.ProductId, value);
+            var value = _mapper.Map<Product>(productDto);
+            await _productCollection.FindOneAndReplaceAsync(x => x.ProductId == productDto.ProductId, value);
         }
     }
 }

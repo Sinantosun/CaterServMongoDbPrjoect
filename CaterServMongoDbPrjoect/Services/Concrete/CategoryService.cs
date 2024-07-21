@@ -20,32 +20,32 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task CreateCategory(CreateCategoryDto category)
+        public async Task CreateCategoryAsync(CreateCategoryDto categoryDto)
         {
-            var values = _mapper.Map<Category>(category);
+            var values = _mapper.Map<Category>(categoryDto);
             await _categoryCollection.InsertOneAsync(values);
         }
 
-        public async Task DeleteCategory(string id)
+        public async Task DeleteCategoryAsync(string id)
         {
             await _categoryCollection.DeleteOneAsync(x => x.CategoryId == id);
         }
 
-        public async Task<List<ResultCategoryDto>> GetAllCategories()
+        public async Task<List<ResultCategoryDto>> GetAllCategoriesAsync()
         {
             var values = await _categoryCollection.AsQueryable().ToListAsync();
             return _mapper.Map<List<ResultCategoryDto>>(values);
         }
 
-        public async Task<ResultCategoryDto> GetCategoryById(string id)
+        public async Task<ResultCategoryDto> GetCategoryByIdAsync(string id)
         {
             var value = await _categoryCollection.Find(x=>x.CategoryId == id).FirstOrDefaultAsync();
             return _mapper.Map<ResultCategoryDto>(value);
         }
 
-        public async Task UpdateCategory(UpdateCategoryDto category)
+        public async Task UpdateCategoryAsync(UpdateCategoryDto categoryDto)
         {
-            var values = _mapper.Map<Category>(category);
+            var values = _mapper.Map<Category>(categoryDto);
             await _categoryCollection.FindOneAndReplaceAsync(x=>x.CategoryId==values.CategoryId,values);
         }
     }

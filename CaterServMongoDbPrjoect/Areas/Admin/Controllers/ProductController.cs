@@ -22,13 +22,13 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var value = await _productService.GetProductsListAndCategories();
+            var value = await _productService.GetProductsListAndCategoriesAsync();
             return View(value);
         }
         [HttpGet]
         public async Task<IActionResult> AddProduct()
         {
-            var categoryList = await _categoryService.GetAllCategories();
+            var categoryList = await _categoryService.GetAllCategoriesAsync();
             List<SelectListItem> categories = (from x in categoryList
                                                select new SelectListItem
                                                {
@@ -41,7 +41,7 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(CreateProductDto createProductDto)
         {
-            await _productService.CreateProduct(createProductDto);
+            await _productService.CreateProductAsync(createProductDto);
             return RedirectToAction("Index");
         }
 
@@ -49,7 +49,7 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(string id)
         {
-            var categoryList = await _categoryService.GetAllCategories();
+            var categoryList = await _categoryService.GetAllCategoriesAsync();
             List<SelectListItem> categories = (from x in categoryList
                                                select new SelectListItem
                                                {
@@ -58,7 +58,7 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
                                                }).ToList();
             ViewBag.Categories = categories;
 
-            var value = await _productService.GetProductById(id);
+            var value = await _productService.GetProductByIdAsync(id);
             var mappedValues = _mapper.Map<UpdateProductDto>(value);
 
             return View(mappedValues);
@@ -66,13 +66,13 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            await _productService.UpdateProduct(updateProductDto);
+            await _productService.UpdateProductAsync(updateProductDto);
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> DeleteProduct(string id)
         {
-            await _productService.DeleteProduct(id);
+            await _productService.DeleteProductAsync(id);
             return RedirectToAction("Index");
         }
     }
