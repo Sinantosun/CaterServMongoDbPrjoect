@@ -1,0 +1,58 @@
+﻿@{
+    int count1 = 0;
+    int count2 = 0;
+}
+@model List<ResultEventDto>
+<div class="container-fluid event py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Son Etkinlikler</small>
+            <h1 class="display-5 mb-5">Sosyal ve Profesyonel Etkinlik Galerimiz</h1>
+        </div>
+        <div class="tab-class text-center">
+            <ul class="nav nav-pills d-inline-flex justify-content-center mb-5" >
+                @foreach (var item in ViewBag.categorylist as List<ResultEventCategoryDto>)
+                {
+                    count2++;
+                    <li class="nav-item p-2">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill @(count2==1?"active":"")" data-bs-toggle="pill" href="#tab-@item.EventCategoriesId">
+                            <span class="text-dark p-3">@item.CategoryName</span>
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+            <div class="tab-content">
+                @foreach (var item in Model)
+                {
+                    count1++;
+                    <div id="tab-@item.EventCategoriesId" class="tab-pane fade show p-0 @(count1==1?"active":"")">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row g-4">
+                                    @foreach (var item2 in Model.Where(x => x.EventCategory.CategoryName == item.EventCategory.CategoryName))
+                                    {
+                                        <div class="col-md-6 col-lg-3" >
+                                            <div class="event-img position-relative">
+                                                <img class="img-fluid rounded w-100" src="@item2.ImageURL" alt="">
+                                                <div class="event-overlay d-flex flex-column p-4">
+                                                    <h4 class="me-auto">@item2.EventCategory.CategoryName</h4>
+                                                    <a href="@item2.ImageURL" data-lightbox="event-1" class="my-auto"><i class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

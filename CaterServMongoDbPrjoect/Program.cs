@@ -18,6 +18,8 @@ builder.Services.AddScoped<IServicesService, ServicesService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventCategoryService, EventCategoryService>();
 builder.Services.AddScoped<ICheffService, CheffService>();
+builder.Services.AddScoped<ITestimonailService, TestimonialService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 {

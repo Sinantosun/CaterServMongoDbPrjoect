@@ -16,7 +16,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
         {
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
-            _serviceCollection = database.GetCollection<Service>(dataBaseSettings.DataBaseName);
+            _serviceCollection = database.GetCollection<Service>(dataBaseSettings.ServiceCollectionName);
 
             _mapper = mapper;
         }

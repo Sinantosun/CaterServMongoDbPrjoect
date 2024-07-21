@@ -1,0 +1,87 @@
+﻿
+@model ResultDashboardStatisticDto
+
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-money text-success border-success"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">Menü Sayısı</div>
+                    <div class="stat-digit">@Model.MenuCount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-user text-primary border-primary"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">Kategori Sayısı</div>
+                    <div class="stat-digit">@Model.CategoryCount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-layout-grid2 text-pink border-pink"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">Rezervasyon Sayısı</div>
+                    <div class="stat-digit">@Model.ReservationCount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-link text-danger border-danger"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">Mesaj Sayısı</div>
+                    <div class="stat-digit">@Model.MessageCount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-money text-success border-danger"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">En Pahalı Menü</div>
+                    <div class="stat-digit">@Model.ExpensiveMenuName</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-6">
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-money text-success border-danger"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">En Ucuz Menü</div>
+                    <div class="stat-digit">@Model.CheapMenuName</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

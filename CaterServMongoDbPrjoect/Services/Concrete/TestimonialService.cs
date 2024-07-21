@@ -9,7 +9,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 {
     public class TestimonialService : ITestimonailService
     {
-        private readonly IMongoCollection<Testimonial> _testimonialCollection;
+        private readonly IMongoCollection<Testimonial> _TestimonialCollection;
         private readonly IMapper _mapper;
 
         public TestimonialService(IMapper mapper, IDataBaseSettings dataBaseSettings)
@@ -17,34 +17,38 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
 
-
+            _TestimonialCollection = database.GetCollection<Testimonial>(dataBaseSettings.TestimonailCollectionName);
 
             _mapper = mapper;
         }
 
-        public Task CreateTestimonailAsync(CreateTestimonailDto testimonailDto)
+        public async Task CreateTestimonailAsync(CreateTestimonailDto TestimonialDto)
         {
-            throw new NotImplementedException();
+            var values = _mapper.Map<Testimonial>(TestimonialDto);
+            await _TestimonialCollection.InsertOneAsync(values);
         }
 
-        public Task DeleteTestimonailAsync(string id)
+        public async Task DeleteTestimonailAsync(string id)
         {
-            throw new NotImplementedException();
+            await _TestimonialCollection.DeleteOneAsync(x => x.TestimonialId == id);
         }
 
-        public Task<List<ResultTestimonailDto>> GetAllTestimonialAsync()
+        public async Task<List<ResultTestimonailDto>> GetAllTestimonialAsync()
         {
-            throw new NotImplementedException();
+            var values = await _TestimonialCollection.AsQueryable().ToListAsync();
+            return _mapper.Map<List<ResultTestimonailDto>>(values);
         }
 
-        public Task<ResultTestimonailDto> GetTestimonailByIdAsync(string id)
+        public async Task<ResultTestimonailDto> GetTestimonailByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var value = await _TestimonialCollection.Find(x => x.TestimonialId == id).FirstOrDefaultAsync();
+            return _mapper.Map<ResultTestimonailDto>(value);
         }
 
-        public Task UpdateTestimonailAsync(UpdateTestimonailDto testimonailDto)
+        public async Task UpdateTestimonailAsync(UpdateTestimonailDto TestimonialDto)
         {
-            throw new NotImplementedException();
+            var values = _mapper.Map<Testimonial>(TestimonialDto);
+            await _TestimonialCollection.FindOneAndReplaceAsync(x => x.TestimonialId == values.TestimonialId, values);
         }
     }
 }

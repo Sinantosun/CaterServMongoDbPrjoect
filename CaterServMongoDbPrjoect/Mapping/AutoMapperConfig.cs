@@ -8,6 +8,7 @@ using CaterServMongoDbPrjoect.Dtos.EventDtos;
 using CaterServMongoDbPrjoect.Dtos.FeatureDtos;
 using CaterServMongoDbPrjoect.Dtos.ProductDtos;
 using CaterServMongoDbPrjoect.Dtos.ServiceDtos;
+using CaterServMongoDbPrjoect.Dtos.TestimonialDtos;
 
 namespace CaterServMongoDbPrjoect.Mapping
 {
@@ -56,6 +57,11 @@ namespace CaterServMongoDbPrjoect.Mapping
             CreateMap<Cheff, UpdateCheffDto>().ReverseMap();
             CreateMap<Cheff, CreateCheffDto>().ReverseMap();
             CreateMap<ResultCheffDto, UpdateCheffDto>().ReverseMap();
+
+            CreateMap<Testimonial, ResultTestimonailDto>().ReverseMap();
+            CreateMap<Testimonial, CreateTestimonailDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonailDto>().ReverseMap();
+            CreateMap<ResultTestimonailDto, UpdateTestimonailDto>().ReverseMap();
         }
 
 
