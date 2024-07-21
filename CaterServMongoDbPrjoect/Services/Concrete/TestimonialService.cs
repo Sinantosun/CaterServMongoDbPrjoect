@@ -25,6 +25,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
         public async Task CreateTestimonailAsync(CreateTestimonailDto TestimonialDto)
         {
             var values = _mapper.Map<Testimonial>(TestimonialDto);
+            values.CommnetDate = DateTime.Now;  
             await _TestimonialCollection.InsertOneAsync(values);
         }
 
@@ -48,6 +49,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
         public async Task UpdateTestimonailAsync(UpdateTestimonailDto TestimonialDto)
         {
             var values = _mapper.Map<Testimonial>(TestimonialDto);
+            values.CommnetDate = DateTime.Now;
             await _TestimonialCollection.FindOneAndReplaceAsync(x => x.TestimonialId == values.TestimonialId, values);
         }
     }

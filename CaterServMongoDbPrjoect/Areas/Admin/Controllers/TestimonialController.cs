@@ -30,7 +30,6 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTestimonial(CreateTestimonailDto createTestimonialDto)
         {
-            createTestimonialDto.CommnetDate = DateTime.Now;    
             await _testimonialService.CreateTestimonailAsync(createTestimonialDto);
             return RedirectToAction("Index");
         }

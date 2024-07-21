@@ -12,7 +12,7 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
         public string ImageURL { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-
+        public bool IsVegetarian { get; set; }
         public string CategoryId { get; set; }
         [BsonIgnore]
         public Category Category { get; set; }

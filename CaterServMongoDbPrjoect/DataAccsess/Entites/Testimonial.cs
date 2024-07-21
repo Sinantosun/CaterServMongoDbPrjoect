@@ -10,7 +10,7 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
         public string TestimonialId { get; set; }
 
         public string ImageURL { get; set; }
-        public string Star { get; set; }
+        public int Star { get; set; }
         public string Name { get; set; }
         public DateTime CommnetDate { get; set; }
         public string Commet { get; set; }

@@ -67,6 +67,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
                         Price = item.Price,
                         ProductId = item.ProductId,
                         ProductName = item.ProductName,
+                        IsVegetarian=item.IsVegetarian,
                         Category = mappedValue,
 
                     });
