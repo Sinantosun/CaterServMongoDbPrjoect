@@ -13,6 +13,7 @@
         public string EventCategoryCollectionName { get; set; }
         public string CheffCollectionName { get; set; }
         public string TestimonailCollectionName { get; set; }
+        public string BookingCollectionName { get; set; }
 
 
 

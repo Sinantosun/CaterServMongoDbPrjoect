@@ -1,15 +1,8 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using CaterServMongoDbPrjoect.Dtos.EventCategoryDtos;
-
-namespace CaterServMongoDbPrjoect.DataAccsess.Entites
+﻿namespace CaterServMongoDbPrjoect.Dtos.BookingDtos
 {
-    public class Booking
+    public class UpdateBookingDto
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string BookingID { get; set; }
-
         public string Province { get; set; }
         public string District { get; set; }
         public string Neighbourhood { get; set; }
@@ -21,9 +14,5 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
         public string Email { get; set; }
 
         public string EventCategoriesId { get; set; }
-
-        [BsonIgnore]
-        public ResultEventCategoryDto EventCategories { get; set; }
-
     }
 }

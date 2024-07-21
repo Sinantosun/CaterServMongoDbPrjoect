@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CaterServMongoDbPrjoect.DataAccsess.Entites;
 using CaterServMongoDbPrjoect.Dtos.AboutDtos;
+using CaterServMongoDbPrjoect.Dtos.BookingDtos;
 using CaterServMongoDbPrjoect.Dtos.CategoryDtos;
 using CaterServMongoDbPrjoect.Dtos.CheffDtos;
 using CaterServMongoDbPrjoect.Dtos.EventCategoryDtos;
@@ -62,6 +63,11 @@ namespace CaterServMongoDbPrjoect.Mapping
             CreateMap<Testimonial, CreateTestimonailDto>().ReverseMap();
             CreateMap<Testimonial, UpdateTestimonailDto>().ReverseMap();
             CreateMap<ResultTestimonailDto, UpdateTestimonailDto>().ReverseMap();
+
+            CreateMap<Booking, ResultBookingDto>().ReverseMap();
+            CreateMap<Booking, CreateBookingDto>().ReverseMap();
+            CreateMap<Booking, UpdateBookingDto>().ReverseMap();
+            CreateMap<ResultBookingDto, UpdateBookingDto>().ReverseMap();
         }
 
 
