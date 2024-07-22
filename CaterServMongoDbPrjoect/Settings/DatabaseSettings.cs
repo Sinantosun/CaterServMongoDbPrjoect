@@ -14,6 +14,9 @@
         public string CheffCollectionName { get; set; }
         public string TestimonailCollectionName { get; set; }
         public string BookingCollectionName { get; set; }
+        public string StatisticCollectionName { get; set; }
+        public string ContactCollectionName { get; set; }
+        public string MessageCollectionName { get; set; }
 
     }
 }

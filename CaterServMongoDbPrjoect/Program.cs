@@ -22,6 +22,8 @@ builder.Services.AddScoped<ITestimonailService, TestimonialService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IStatisticService, StatisticService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 {

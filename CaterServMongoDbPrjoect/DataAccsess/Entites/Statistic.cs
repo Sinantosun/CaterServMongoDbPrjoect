@@ -21,6 +21,8 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
         public string Property3Title { get; set; }
         public string Property3Amount { get; set; }
 
+        public string IFrameURL { get; set; }
+
 
     }
 }

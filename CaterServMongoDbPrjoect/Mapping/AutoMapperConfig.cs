@@ -4,11 +4,13 @@ using CaterServMongoDbPrjoect.Dtos.AboutDtos;
 using CaterServMongoDbPrjoect.Dtos.BookingDtos;
 using CaterServMongoDbPrjoect.Dtos.CategoryDtos;
 using CaterServMongoDbPrjoect.Dtos.CheffDtos;
+using CaterServMongoDbPrjoect.Dtos.ContactDtos;
 using CaterServMongoDbPrjoect.Dtos.EventCategoryDtos;
 using CaterServMongoDbPrjoect.Dtos.EventDtos;
 using CaterServMongoDbPrjoect.Dtos.FeatureDtos;
 using CaterServMongoDbPrjoect.Dtos.ProductDtos;
 using CaterServMongoDbPrjoect.Dtos.ServiceDtos;
+using CaterServMongoDbPrjoect.Dtos.StatisticDtos;
 using CaterServMongoDbPrjoect.Dtos.TestimonialDtos;
 
 namespace CaterServMongoDbPrjoect.Mapping
@@ -68,6 +70,16 @@ namespace CaterServMongoDbPrjoect.Mapping
             CreateMap<Booking, CreateBookingDto>().ReverseMap();
             CreateMap<Booking, UpdateBookingDto>().ReverseMap();
             CreateMap<ResultBookingDto, UpdateBookingDto>().ReverseMap();
+
+
+            CreateMap<Statistic, ResultStatisticDto>().ReverseMap();
+            CreateMap<Statistic, CreateStatisticDto>().ReverseMap();
+            CreateMap<Statistic, UpdateStatisticDto>().ReverseMap();
+            CreateMap<ResultStatisticDto, UpdateStatisticDto>().ReverseMap();
+
+
+            CreateMap<Contact, ResultContactDto>().ReverseMap();
+            CreateMap<Contact, CreateContactDto>().ReverseMap();
         }
 
 

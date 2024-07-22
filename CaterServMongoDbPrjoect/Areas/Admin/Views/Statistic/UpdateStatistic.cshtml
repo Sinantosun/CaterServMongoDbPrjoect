@@ -1,0 +1,63 @@
+﻿@model UpdateStatisticDto
+@{
+    ViewData["Title"] = "UpdateStatistic";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Hakkımızda Ekleme Sayfası</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form text-muted">
+                    <form method="post">
+                        <input type="hidden" class="form-control" asp-for="StatisticID" />
+                        <label>1. Özellik İkon</label>
+                        <input type="text" class="form-control" asp-for="Property1Icon" />
+                        <br />
+                        <label>1. Özellik Başlık</label>
+                        <input type="text" class="form-control" asp-for="Property1Title" />
+                        <br />
+                        <label>1. Özellik Miktar</label>
+                        <input type="text" class="form-control" asp-for="Property1Amount" />
+                        <br />
+                        <label>2. Özellik İkon</label>
+                        <input type="text" class="form-control" asp-for="Property2Icon" />
+                        <br />
+                        <label>2. Özellik Başlık</label>
+                        <input type="text" class="form-control" asp-for="Property2Title" />
+                        <br />
+                        <label>2. Özellik Miktar</label>
+                        <input type="text" class="form-control" asp-for="Property2Amount" />
+                        <br />
+                        <label>3. Özellik İkon</label>
+                        <input type="text" class="form-control" asp-for="Property3Icon" />
+                        <br />
+                        <label>3. Özellik Başlık</label>
+                        <input type="text" class="form-control" asp-for="Property3Title" />
+                        <br />
+                        <label>3. Özellik Miktar</label>
+                        <input type="text" class="form-control" asp-for="Property3Amount" />
+                        <br />
+                        <label>Video IFrame URL</label>
+                        <input type="text" class="form-control" asp-for="IFrameURL" />
+                        <br />
+                        <button class="btn btn-outline-primary"><i class="fa fa-pencil"></i> Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
