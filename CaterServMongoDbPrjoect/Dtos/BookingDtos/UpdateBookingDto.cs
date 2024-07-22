@@ -12,7 +12,7 @@
         public string PhoneNumber { get; set; }
         public DateTime Date { get; set; }
         public string Email { get; set; }
-
+        public string Status { get; set; }
         public string EventCategoriesId { get; set; }
     }
 }

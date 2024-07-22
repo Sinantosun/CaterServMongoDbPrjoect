@@ -10,7 +10,7 @@ namespace CaterServMongoDbPrjoect.Dtos.BookingDtos
         public string Province { get; set; }
         public string District { get; set; }
         public string Neighbourhood { get; set; }
-
+        public string Status { get; set; }
         public string PersonCount { get; set; }
         public bool IsVegeteratian { get; set; }
         public string PhoneNumber { get; set; }

@@ -12,17 +12,20 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
     {
         private readonly IMongoCollection<Feature> _featureCollection;
         private readonly IMapper _mapper;
-
-        public FeatureService(IMapper mapper, IDataBaseSettings dataBaseSettings)
+        private readonly IImageService _imageService;
+        public FeatureService(IMapper mapper, IDataBaseSettings dataBaseSettings, IImageService imageService)
         {
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _featureCollection = database.GetCollection<Feature>(dataBaseSettings.FeatureCollectionName);
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         public async Task CreateFeatureAsync(CreateFeatureDto featureDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(featureDto.File);
+            featureDto.ImageURL = ImageURL;
             var value = _mapper.Map<Feature>(featureDto);
             await _featureCollection.InsertOneAsync(value);
         }
@@ -48,6 +51,9 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
         public async Task UpdateFeatureAsync(UpdateFeatureDto featureDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(featureDto.File);
+            featureDto.ImageURL = ImageURL;
+
             var value = _mapper.Map<Feature>(featureDto);
             await _featureCollection.FindOneAndReplaceAsync(x => x.FeatureID == featureDto.FeatureID, value);
         }

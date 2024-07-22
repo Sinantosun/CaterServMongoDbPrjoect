@@ -10,5 +10,12 @@ namespace CaterServMongoDbPrjoect.Services.Abstract
         Task CreateBookingAsync(CreateBookingDto bookingDto);
         Task DeleteBookingAsync(string id);
 
+        Task ApproveBooking(string id);
+        Task CancelBooking(string id);
+        Task WaitingBooking(string id);
+       Task<List<ResultBookingDto>> SearchBookingByVisitorNameSurname (string nameSurname);
+
+        Task<List<ResultBookingDto>> Get10BookingAsync();
+
     }
 }

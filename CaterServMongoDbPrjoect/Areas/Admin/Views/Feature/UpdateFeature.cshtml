@@ -12,13 +12,13 @@
             </div>
             <div class="card-body">
                 <div class="basic-form text-muted">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <input type="hidden" class="form-control" asp-for="FeatureID" />
                         <label>Başlık</label>
                         <input type="text" class="form-control" asp-for="Title" />
                         <br />
                         <label>Görsel</label>
-                        <input type="text" class="form-control" asp-for="ImageURL" />
+                        <input type="file" class="form-control" asp-for="File" />
                         <br />
                         <button class="btn btn-outline-primary"><i class="fa fa-edit"></i> Güncelle</button>
                     </form>

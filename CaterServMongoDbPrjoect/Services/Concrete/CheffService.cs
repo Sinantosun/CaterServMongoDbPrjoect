@@ -11,17 +11,22 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
     {
         private readonly IMongoCollection<Cheff> _cheffCollection;
         private readonly IMapper _mapper;
-        public CheffService(IMapper mapper, IDataBaseSettings dataBaseSettings)
+        private readonly IImageService _imageService;
+        public CheffService(IMapper mapper, IDataBaseSettings dataBaseSettings, IImageService imageService)
         {
 
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _cheffCollection = database.GetCollection<Cheff>(dataBaseSettings.CheffCollectionName);
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         public async Task CreateCheffAsync(CreateCheffDto cheffDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(cheffDto.File);
+            cheffDto.ImageURL = ImageURL;   
+
             var values = _mapper.Map<Cheff>(cheffDto);
             await _cheffCollection.InsertOneAsync(values);
         }
@@ -45,6 +50,9 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
         public async Task UpdateCheffAsync(UpdateCheffDto cheffDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(cheffDto.File);
+            cheffDto.ImageURL = ImageURL;
+
             var values = _mapper.Map<Cheff>(cheffDto);
             await _cheffCollection.FindOneAndReplaceAsync(x => x.CheffId == values.CheffId, values);
         }

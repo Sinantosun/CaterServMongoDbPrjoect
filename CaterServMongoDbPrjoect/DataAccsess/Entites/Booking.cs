@@ -9,7 +9,7 @@ namespace CaterServMongoDbPrjoect.DataAccsess.Entites
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string BookingID { get; set; }
-
+        public string Status { get; set; }
         public string Province { get; set; }
         public string District { get; set; }
         public string Neighbourhood { get; set; }

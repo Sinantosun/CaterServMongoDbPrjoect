@@ -1,0 +1,71 @@
+﻿@model UpdateBookingDto
+@{
+    ViewData["Title"] = "UpdateBooking";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Rezervasyon Güncelleme Sayfası</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form text-muted">
+                    <form method="post">
+                        <input type="hidden" class="form-control" asp-for="BookingID" />
+                        <label>Ad Soyad</label>
+                        <input type="text" class="form-control" asp-for="NameSurname" />
+                        <br />
+                        <label>İl</label>
+                        <input type="text" class="form-control" asp-for="Province" />
+                        <br />
+                        <label>İlçe</label>
+                        <input type="text" class="form-control" asp-for="District" />
+                        <br />
+                        <label>Mahalle</label>
+                        <input type="text" class="form-control" asp-for="Neighbourhood" />
+                        <br />
+                        <label>Kişi Sayısı</label>
+                        <input type="text" class="form-control" asp-for="PersonCount" />
+                        <br />
+                        <label>Telefon Numarası</label>
+                        <input type="text" class="form-control" asp-for="PhoneNumber" />
+                        <br />
+                        <label>Tarih</label>
+                        <input type="date" class="form-control" asp-for="Date" />
+                        <br />
+                        <label>Email Adresi</label>
+                        <input type="email" rows="5" class="form-control" asp-for="Email" />
+                        <br />
+                        <label>Etkinlik Kategorisi</label>
+                        <select type="email" class="form-control" asp-items="ViewBag.CategoriesList" asp-for="EventCategoriesId"></select>
+                        <br>
+
+                        <select class="form-select border-primary p-2 form-control" asp-for="IsVegeteratian" aria-label="Default select example">
+                            <option selected>Vejeteryan Menü</option>
+                            <option value="true">Evet, Olsun</option>
+                            <option value="false">Hayır, Olmasın</option>
+                        </select>
+                        <br>
+                        <label>Durum</label>
+                        <input type="text" rows="5" class="form-control" asp-for="Status" />
+                        <br />
+                        <br>
+                        <button class="btn btn-outline-primary"><i class="fa fa-edit"></i> Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

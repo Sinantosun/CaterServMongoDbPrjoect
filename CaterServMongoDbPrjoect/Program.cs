@@ -21,6 +21,7 @@ builder.Services.AddScoped<ICheffService, CheffService>();
 builder.Services.AddScoped<ITestimonailService, TestimonialService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IImageService, ImageService>();
 
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 {

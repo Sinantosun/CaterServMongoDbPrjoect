@@ -13,16 +13,20 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
         private readonly IMongoCollection<Product> _productCollection;
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMapper _mapper;
-        public ProductService(IMapper mapper, IDataBaseSettings dataBaseSettings)
+        private readonly IImageService _imageService;   
+        public ProductService(IMapper mapper, IDataBaseSettings dataBaseSettings, IImageService imageService)
         {
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _productCollection = database.GetCollection<Product>(dataBaseSettings.ProductCollectionName);
             _categoryCollection = database.GetCollection<Category>(dataBaseSettings.CategoryCollectionName);
             _mapper = mapper;
+            _imageService = imageService;
         }
         public async Task CreateProductAsync(CreateProductDto productDto)
         {
+            string imageURL = await _imageService.CreateImageAsync(productDto.File);
+            productDto.ImageURL = imageURL;
             var mappedValue = _mapper.Map<Product>(productDto);
             await _productCollection.InsertOneAsync(mappedValue);
         }
@@ -79,6 +83,8 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
         public async Task UpdateProductAsync(UpdateProductDto productDto)
         {
+            string imageURL = await _imageService.CreateImageAsync(productDto.File);
+            productDto.ImageURL = imageURL;
             var value = _mapper.Map<Product>(productDto);
             await _productCollection.FindOneAndReplaceAsync(x => x.ProductId == productDto.ProductId, value);
         }

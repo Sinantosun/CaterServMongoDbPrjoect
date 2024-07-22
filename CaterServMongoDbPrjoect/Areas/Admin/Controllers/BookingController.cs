@@ -2,6 +2,7 @@
 using CaterServMongoDbPrjoect.Dtos.BookingDtos;
 using CaterServMongoDbPrjoect.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
 {
@@ -10,12 +11,14 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
     public class BookingController : Controller
     {
         private readonly IBookingService _BookingService;
+        private readonly IEventCategoryService _EventCategoryService;
         private readonly IMapper _mapper;
 
-        public BookingController(IBookingService BookingService, IMapper mapper)
+        public BookingController(IBookingService BookingService, IMapper mapper, IEventCategoryService eventCategoryService)
         {
             _BookingService = BookingService;
             _mapper = mapper;
+            _EventCategoryService = eventCategoryService;
         }
 
         public async Task<IActionResult> Index()
@@ -25,14 +28,25 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateBooking()
+        public async Task<IActionResult> CreateBooking()
         {
+            var values = await _EventCategoryService.GetAllEventCategorysAsync();
+            List<SelectListItem> categoriesList = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.EventCategoriesId,
+
+                                                   }).ToList();
+
+            ViewBag.CategoriesList = categoriesList;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateBooking(CreateBookingDto createBookingDto)
         {
+            createBookingDto.Status = "Onay Bekliyor";
             await _BookingService.CreateBookingAsync(createBookingDto);
             return RedirectToAction("Index");
         }
@@ -42,6 +56,16 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         {
             var value = await _BookingService.GetBookingByIdAsync(id);
             var mappedValues = _mapper.Map<UpdateBookingDto>(value);
+            var values = await _EventCategoryService.GetAllEventCategorysAsync();
+            List<SelectListItem> categoriesList = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.EventCategoriesId,
+
+                                                   }).ToList();
+
+            ViewBag.CategoriesList = categoriesList;
             return View(mappedValues);
         }
 
@@ -56,6 +80,29 @@ namespace CaterServMongoDbPrjoect.Areas.Admin.Controllers
         {
             await _BookingService.DeleteBookingAsync(id);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ApproveBooking(string id)
+        {
+            await _BookingService.ApproveBooking(id);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> WaitingBooking(string id)
+        {
+            await _BookingService.WaitingBooking(id);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> CancelBooking(string id)
+        {
+            await _BookingService.CancelBooking(id);
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchBookingByNameSurname(string NameSurname)
+        {
+            var value = await _BookingService.SearchBookingByVisitorNameSurname(NameSurname);
+            TempData["showallbookings"] = "true";
+            return View("Index", value);
         }
     }
 }

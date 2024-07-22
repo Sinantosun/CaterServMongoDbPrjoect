@@ -10,8 +10,24 @@
         <div class="card-header">
             <h4 class="card-title">Rezervasyon Listesi</h4>
         </div>
+
         <div class="card-body">
+            <label>Rezervasyon Ara</label>
+            <form method="post" asp-action="SearchBookingByNameSurname" asp-controller="Booking">
+                <input type="search" class="form-control" name="NameSurname" placeholder="Ad Soyad" />
+                <br />
+                <input type="submit" value="Ara" class="btn btn-outline-primary" />
+            </form>
+            @if (TempData["showallbookings"] != null)
+            {
+                <br />
+                <a href="/Admin/Booking/Index/" class="btn btn-outline-danger"> <i class="fa fa-arrow-left"></i> Filtreyi Kaldır</a>
+            }
+
+            <br />
+            <br />
             <div class="table-responsive">
+
                 <table class="table table-bordered text-muted table-responsive-sm">
                     <thead>
                         <tr>
@@ -19,7 +35,8 @@
                             <td>Ad Soyad</td>
                             <td>Kişi Sayısı</td>
                             <td>Tarih</td>
-                            <td class="text-center" colspan="2">İşlemler</td>
+                            <td>Durum</td>
+                            <td class="text-center" colspan="5">İşlemler</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,13 +48,24 @@
                                 <td>@item.NameSurname</td>
                                 <td>@item.PersonCount</td>
                                 <td>@(((DateTime)item.Date).ToShortDateString())</td>
+                                <td>@item.Status</td>
                                 <td style="width:100px" class="text-center">
                                     <a href="/Admin/Booking/DeleteBooking/@item.BookingID" class="btn btn-outline-danger"> <i class="fa fa-trash"></i> Sil</a>
 
                                 </td>
                                 <td style="width:130px" class="text-center">
-                                    <a href="/Admin/Booking/UpdateBooking/@item.BookingID" class="btn btn-outline-success"><i class="fa fa-edit"></i> Güncelle</a>
+                                    <a href="/Admin/Booking/UpdateBooking/@item.BookingID" class="btn btn-outline-dark"><i class="fa fa-edit"></i> Güncelle</a>
                                 </td>
+                                <td style="width:130px" class="text-center">
+                                    <a href="/Admin/Booking/WaitingBooking/@item.BookingID" class="btn btn-outline-primary"><i class="fa fa-history"></i> Beklet</a>
+                                </td>
+                                <td style="width:130px" class="text-center">
+                                    <a href="/Admin/Booking/ApproveBooking/@item.BookingID" class="btn btn-outline-success"><i class="fa fa-check"></i> Onayla</a>
+                                </td>
+                                <td style="width:130px" class="text-center">
+                                    <a href="/Admin/Booking/CancelBooking/@item.BookingID" class="btn btn-outline-warning"><i class="fa fa-close"></i> İptal Et</a>
+                                </td>
+
                             </tr>
                         }
                     </tbody>

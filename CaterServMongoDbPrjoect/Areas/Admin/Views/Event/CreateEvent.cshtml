@@ -13,9 +13,9 @@
             </div>
             <div class="card-body">
                 <div class="basic-form text-muted">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <label>Görsel</label>
-                        <input type="text" class="form-control" asp-for="ImageURL" />
+                        <input type="file" class="form-control" asp-for="File" />
                         <br />
                         <label>Kategori Seçiniz</label>
                         <select asp-for="EventCategoriesId" asp-items="@ViewBag.EventCategoryList" class="form-control"></select>

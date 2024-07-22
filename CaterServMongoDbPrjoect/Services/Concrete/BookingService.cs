@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using CaterServMongoDbPrjoect.DataAccsess.Entites;
 using CaterServMongoDbPrjoect.Dtos.BookingDtos;
-using CaterServMongoDbPrjoect.Dtos.BookingDtos;
 using CaterServMongoDbPrjoect.Services.Abstract;
 using CaterServMongoDbPrjoect.Settings;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace CaterServMongoDbPrjoect.Services.Concrete
 {
@@ -21,6 +21,20 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             _mapper = mapper;
         }
 
+        public async Task ApproveBooking(string id)
+        {
+            var value = await _BookingCollection.Find(x => x.BookingID == id).FirstOrDefaultAsync();
+            value.Status = "Onaylandı";
+            _BookingCollection.FindOneAndReplace(x => x.BookingID == id, value);
+        }
+
+        public async Task CancelBooking(string id)
+        {
+            var value = await _BookingCollection.Find(x => x.BookingID == id).FirstOrDefaultAsync();
+            value.Status = "İptal Edildi";
+            _BookingCollection.FindOneAndReplace(x => x.BookingID == id, value);
+        }
+
         public async Task CreateBookingAsync(CreateBookingDto bookingDto)
         {
             var values = _mapper.Map<Booking>(bookingDto);
@@ -32,9 +46,15 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             await _BookingCollection.DeleteOneAsync(x => x.BookingID == id);
         }
 
+        public async Task<List<ResultBookingDto>> Get10BookingAsync()
+        {
+            var values = await _BookingCollection.AsQueryable().Take(10).ToListAsync();
+            return _mapper.Map<List<ResultBookingDto>>(values);
+        }
+
         public async Task<List<ResultBookingDto>> GetAllBookingsAsync()
         {
-            var values = await _BookingCollection.AsQueryable().ToListAsync();
+            var values = await _BookingCollection.AsQueryable().OrderByDescending(x => x.BookingID).ToListAsync();
             return _mapper.Map<List<ResultBookingDto>>(values);
         }
 
@@ -44,10 +64,23 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             return _mapper.Map<ResultBookingDto>(value);
         }
 
+        public async Task<List<ResultBookingDto>> SearchBookingByVisitorNameSurname(string nameSurname)
+        {
+            var value = await _BookingCollection.AsQueryable().Where(x => x.NameSurname == nameSurname).ToListAsync();
+            return _mapper.Map<List<ResultBookingDto>>(value);
+        }
+
         public async Task UpdateBookingAsync(UpdateBookingDto bookingDto)
         {
             var values = _mapper.Map<Booking>(bookingDto);
             await _BookingCollection.FindOneAndReplaceAsync(x => x.BookingID == values.BookingID, values);
+        }
+
+        public async Task WaitingBooking(string id)
+        {
+            var value = await _BookingCollection.Find(x => x.BookingID == id).FirstOrDefaultAsync();
+            value.Status = "Beklemede, Kullanıcı Aranacak";
+            _BookingCollection.FindOneAndReplace(x => x.BookingID == id, value);
         }
     }
 }

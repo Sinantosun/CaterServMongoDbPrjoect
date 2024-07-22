@@ -11,8 +11,8 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
     {
         private readonly IMongoCollection<Testimonial> _TestimonialCollection;
         private readonly IMapper _mapper;
-
-        public TestimonialService(IMapper mapper, IDataBaseSettings dataBaseSettings)
+        private readonly IImageService _imageService;
+        public TestimonialService(IMapper mapper, IDataBaseSettings dataBaseSettings, IImageService imageService)
         {
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
@@ -20,10 +20,14 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             _TestimonialCollection = database.GetCollection<Testimonial>(dataBaseSettings.TestimonailCollectionName);
 
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         public async Task CreateTestimonailAsync(CreateTestimonailDto TestimonialDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(TestimonialDto.File);
+            TestimonialDto.ImageURL = ImageURL;
+
             var values = _mapper.Map<Testimonial>(TestimonialDto);
             values.CommnetDate = DateTime.Now;  
             await _TestimonialCollection.InsertOneAsync(values);
@@ -48,6 +52,9 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
         public async Task UpdateTestimonailAsync(UpdateTestimonailDto TestimonialDto)
         {
+            var ImageURL = await _imageService.CreateImageAsync(TestimonialDto.File);
+            TestimonialDto.ImageURL = ImageURL;
+
             var values = _mapper.Map<Testimonial>(TestimonialDto);
             values.CommnetDate = DateTime.Now;
             await _TestimonialCollection.FindOneAndReplaceAsync(x => x.TestimonialId == values.TestimonialId, values);

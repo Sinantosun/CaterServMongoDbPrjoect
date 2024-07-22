@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <div class="basic-form text-muted">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <label>Başlık</label>
                         <input type="hidden" class="form-control" asp-for="AboutID" />
                         <input type="text" class="form-control" asp-for="Title" />
@@ -30,7 +30,7 @@
                         <input type="text" class="form-control" asp-for="Property4" />
                         <br />
                         <label>Resim</label>
-                        <input type="text" class="form-control" asp-for="ImageURL" />
+                        <input type="file" class="form-control" asp-for="File" />
                         <br />
                         <label>Açıklama</label>
                         <textarea type="text" rows="5" class="form-control" asp-for="Desciription"></textarea>

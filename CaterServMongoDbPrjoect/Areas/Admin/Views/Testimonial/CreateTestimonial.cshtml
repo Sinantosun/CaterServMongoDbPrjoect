@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <div class="basic-form text-muted">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <label>Ad Soyad</label>
                         <input type="text" class="form-control" asp-for="Name" />
                         <br />
@@ -20,7 +20,7 @@
                         <input type="text" class="form-control" asp-for="Star" />
                         <br />
                         <label>Görsel</label>
-                        <input type="text" class="form-control" asp-for="ImageURL" />
+                        <input type="file" class="form-control" asp-for="File" />
                         <br />
                         <label>Yorum</label>
                         <textarea type="text" rows="5" class="form-control" asp-for="Commet"></textarea>

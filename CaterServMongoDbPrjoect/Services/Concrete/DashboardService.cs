@@ -10,6 +10,7 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
     {
         private readonly IMongoCollection<Product> _productCollection;
         private readonly IMongoCollection<Category> _categoryCollection;
+        private readonly IMongoCollection<Booking> _bookingCollection;
 
         public DashboardService(IDataBaseSettings dataBaseSettings)
         {
@@ -17,19 +18,20 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _productCollection = database.GetCollection<Product>(dataBaseSettings.ProductCollectionName);
             _categoryCollection = database.GetCollection<Category>(dataBaseSettings.CategoryCollectionName);
+            _bookingCollection = database.GetCollection<Booking>(dataBaseSettings.BookingCollectionName);
         }
 
         public ResultDashboardStatisticDto GetDashboardStatistic()
         {
             ResultDashboardStatisticDto result = new ResultDashboardStatisticDto()
             {
-                CategoryCount = _categoryCollection.AsQueryable().ToList().Count(),
-                MenuCount = _productCollection.AsQueryable().ToList().Count(),
+                CategoryCount = _categoryCollection.AsQueryable().Count(),
+                MenuCount = _productCollection.AsQueryable().Count(),
        
                 ExpensiveMenuName = _productCollection.AsQueryable().OrderByDescending(x=>x.Price).Take(1).Select(x=>x.ProductName).FirstOrDefault(),
                 CheapMenuName = _productCollection.AsQueryable().OrderBy(x=>x.Price).Take(1).Select(x=>x.ProductName).FirstOrDefault(),
                 MessageCount = 2,
-                ReservationCount = 5,
+                ReservationCount = _bookingCollection.AsQueryable().Count(),
 
             };
 

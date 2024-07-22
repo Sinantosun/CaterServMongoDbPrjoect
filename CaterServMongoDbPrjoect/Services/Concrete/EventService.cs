@@ -13,18 +13,22 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
         private readonly IMongoCollection<Event> _eventCollection;
         private readonly IMongoCollection<EventCategories> _eventCategoriesCollection;
         private readonly IMapper _mapper;
-
-        public EventService(IMapper mapper, IDataBaseSettings dataBaseSettings)
+        private readonly IImageService _imageService;   
+        public EventService(IMapper mapper, IDataBaseSettings dataBaseSettings, IImageService imageService)
         {
             var client = new MongoClient(dataBaseSettings.ConnectionString);
             var database = client.GetDatabase(dataBaseSettings.DataBaseName);
             _eventCollection = database.GetCollection<Event>(dataBaseSettings.EventCollectionName);
             _eventCategoriesCollection = database.GetCollection<EventCategories>(dataBaseSettings.EventCategoryCollectionName);
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         public async Task CreateEventAsync(CreateEventDto EventDto)
         {
+            var ImageUrl = await _imageService.CreateImageAsync(EventDto.File);
+            EventDto.ImageURL = ImageUrl;
+
             var values = _mapper.Map<Event>(EventDto);
             await _eventCollection.InsertOneAsync(values);
         }
@@ -70,6 +74,9 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
 
         public async Task UpdateEventAsync(UpdateEventDto EventDto)
         {
+            var ImageUrl = await _imageService.CreateImageAsync(EventDto.File);
+            EventDto.ImageURL = ImageUrl;
+
             var values = _mapper.Map<Event>(EventDto);
             await _eventCollection.FindOneAndReplaceAsync(x => x.EventId == values.EventId, values);
         }

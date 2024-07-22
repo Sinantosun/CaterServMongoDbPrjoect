@@ -13,12 +13,12 @@
             </div>
             <div class="card-body">
                 <div class="basic-form text-muted">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <label>Ürün Adı</label>
                         <input type="text" class="form-control" asp-for="ProductName" />
                         <br />
                         <label>Resim</label>
-                        <input type="text" class="form-control" asp-for="ImageURL" />
+                        <input type="file" class="form-control" asp-for="File" />
                         <br />
                         <label>Fiyat</label>
                         <input type="text" class="form-control" asp-for="Price" />
