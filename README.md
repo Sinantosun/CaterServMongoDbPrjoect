@@ -61,3 +61,32 @@ MongoDb kullanırken, ilişkili tablolarınızı bu şekilde kullanabilirsiniz.
 
 📌 Bu alan ürünlerin yer listelendiği yerdir.
 
+![admin03](https://github.com/user-attachments/assets/38fef3b2-4222-4f47-a73f-64e1e416e488)
+
+📌 Rezervasyonların listelendiği alandır.<br>
+📌 Burada admin rezervasyon iptal edebilir onaylayabilir veya bekletebilir. ayrı zamanda silme güncelleme ve ekleme de yapabilir.
+📌 kayıtlar arasında ad soyad'a göre arama işlemi gerçekleştirilebilmektedir.
+
+
+![image01](https://github.com/user-attachments/assets/82bf2241-7aa9-456e-a832-c12a4f4b9214)
+
+📌 Ana Sayfa öne çıkanlar alanı
+
+![image02](https://github.com/user-attachments/assets/ea2fb549-05af-4f3a-99b2-626435a7c504)
+
+📌 Ana Sayfa hakkımızda alanı
+
+![image06](https://github.com/user-attachments/assets/0f557259-eda0-4f63-a997-375a3bbb9c47)
+
+📌 Ana Sayfa ürünler alanı
+
+![image07](https://github.com/user-attachments/assets/b383d62a-caf5-4961-85b9-ec6493c091fd)
+
+📌 Ana Sayfa rezervasyon yapma alanı
+
+![image](https://github.com/user-attachments/assets/aadb1f82-0813-4169-92b8-019ba837d28b)
+
+📌 menüler sayfasında menü listesi.
+
+
+
