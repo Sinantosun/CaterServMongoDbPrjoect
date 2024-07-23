@@ -1,0 +1,46 @@
+﻿@model ResultMessageDto
+@{
+    ViewData["Title"] = "GetMessageDetail";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+               
+                    <div class="ml-0 ml-sm-4 ml-sm-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="right-box-padding">
+                 
+                                    <div class="read-content">
+                                        <div class="media pt-3">
+                                            <div class="media-body">
+                                                <h5 class="text-primary">Gönderen Ad Soyad : @Model.NameSurname</h5>
+                                     
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="media mb-4 mt-5">
+                                            <div class="media-body">
+                                                <span class="pull-right"> Tarih : @Model.Date</span>
+                                            </div>
+                                        </div>
+                                        <div class="read-content-body">
+                                            <p>
+                                              @Model.Content
+                                            </p>
+                                    </div>
+                              
+
+                                    </div>
+      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

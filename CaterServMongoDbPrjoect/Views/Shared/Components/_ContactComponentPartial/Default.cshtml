@@ -1,0 +1,25 @@
+﻿@model CreateMessageDto
+<div class="col-md-6 col-lg-7">
+    <p class="mb-4">Sorular öneriler şikayet veya diğer konular için bize ulaşabilirisiniz</a>.</p>
+    <form method="post" asp-action="SendMessage" asp-controller="Contact">
+        <input type="text" asp-for="NameSurname" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Adınız">
+        <input type="email" asp-for="Email" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Email Adresiniz">
+        <textarea asp-for="Content" class="w-100 form-control mb-4 p-3 border-primary bg-light" rows="4" cols="10" placeholder="Mesajınız"></textarea>
+        <button onclick="AddContact()" class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill" type="submit">Gönder</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (TempData["addcontactresult"] != null)
+{
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Mesajınız iletilidi.",
+            showConfirmButton: false,
+            timer: 8000
+        });
+    </script>
+
+}

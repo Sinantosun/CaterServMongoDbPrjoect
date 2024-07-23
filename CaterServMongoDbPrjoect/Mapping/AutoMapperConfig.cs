@@ -8,6 +8,7 @@ using CaterServMongoDbPrjoect.Dtos.ContactDtos;
 using CaterServMongoDbPrjoect.Dtos.EventCategoryDtos;
 using CaterServMongoDbPrjoect.Dtos.EventDtos;
 using CaterServMongoDbPrjoect.Dtos.FeatureDtos;
+using CaterServMongoDbPrjoect.Dtos.MessageDtos;
 using CaterServMongoDbPrjoect.Dtos.ProductDtos;
 using CaterServMongoDbPrjoect.Dtos.ServiceDtos;
 using CaterServMongoDbPrjoect.Dtos.StatisticDtos;
@@ -29,7 +30,7 @@ namespace CaterServMongoDbPrjoect.Mapping
             CreateMap<Product, ResultProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<ResultProductDto, UpdateProductDto>().ReverseMap();
-  
+
             CreateMap<Feature, ResultFeatureDto>().ReverseMap();
             CreateMap<Feature, CreateFeatureDto>().ReverseMap();
             CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
@@ -80,9 +81,15 @@ namespace CaterServMongoDbPrjoect.Mapping
 
             CreateMap<Contact, ResultContactDto>().ReverseMap();
             CreateMap<Contact, CreateContactDto>().ReverseMap();
+            CreateMap<Contact, UpdateContactDto>().ReverseMap();
+            CreateMap<ResultContactDto, UpdateContactDto>().ReverseMap();
+
+
+            CreateMap<Message, ResultMessageDto>().ReverseMap();
+            CreateMap<Message, CreateMessageDto>().ReverseMap();
         }
-
-
-
     }
+
+
+
 }

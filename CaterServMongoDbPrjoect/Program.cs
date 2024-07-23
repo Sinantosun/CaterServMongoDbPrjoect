@@ -24,6 +24,7 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IStatisticService, StatisticService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
 {

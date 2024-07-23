@@ -18,8 +18,8 @@
                         <tr>
                             <td>#</td>
                             <td>Adress</td>
+                            <td>Telefon</td>
                             <td>Mail</td>
-                            <td>Phone</td>
                             <td class="text-center" colspan="2">İşlemler</td>
                         </tr>
                     </thead>
@@ -29,22 +29,22 @@
                             count++;
                             <tr>
                                 <th>@count</th>
-                                <td><img src="@item.ContactId" style="width:200px; height:200px" /></td>
-                                <td>@item.Title</td>
-                                <td>@item.Desciription</td>
+                                <td>@item.Adress</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Mail</td>
                                 <td style="width:100px" class="text-center">
-                                    <a href="/Admin/About/DeleteAbout/@item.ContactId" class="btn btn-outline-danger"> <i class="fa fa-trash"></i> Sil</a>
+                                    <a href="/Admin/Contact/DeleteContact/@item.ContactId" class="btn btn-outline-danger"> <i class="fa fa-trash"></i> Sil</a>
 
                                 </td>
                                 <td style="width:130px" class="text-center">
-                                    <a href="/Admin/About/UpdateAbout/@item.ContactId" class="btn btn-outline-success"><i class="fa fa-edit"></i> Güncelle</a>
+                                    <a href="/Admin/Contact/UpdateContact/@item.ContactId" class="btn btn-outline-success"><i class="fa fa-edit"></i> Güncelle</a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
                 <br />
-                <a href="/Admin/About/CreateAbout" class="btn btn-outline-primary"> <i class="fa fa-pencil"></i> Yeni Hakkımızda Ekle</a>
+                <a href="/Admin/Contact/CreateContact" class="btn btn-outline-primary"> <i class="fa fa-pencil"></i> Yeni İletişim Ekle</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@model List<ResultProductWithCategoriesDto>
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Menümüz</small>
+            <h1 class="display-5 mb-5">Leziz yemeklerimiz ile tanışın</h1>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                    <div class="bg-light rounded service-item">
+                        <div class="service-content d-flex align-items-center justify-content-center p-4">
+                            <div class="service-content-icon text-center">
+                               <img style="width:200px;height:200px ; border-radius:5px"  src="@item.ImageURL"  />
+                               <br />
+                               <br />
+                                <h4 class="mb-3">@item.ProductName</h4>
+                                <p class="mb-4 font-weight-bold">@item.Price ₺</p>
+                                <p class="mb-4">@item.Description</p>
+                                <p class="mb-4">@(item.IsVegetarian==true?"Vejeteryen":"")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

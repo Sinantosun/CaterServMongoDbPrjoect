@@ -12,15 +12,8 @@
                     <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Bize Ulaşın</small>
                     <h1 class="display-5 mb-0">Sorularınız için bize ulaşın!</h1>
                 </div>
-                <div class="col-md-6 col-lg-7">
-                    <p class="mb-4">Sorular öneriler şikayet veya diğer konular için bize ulaşabilirisiniz</a>.</p>
-                    <form>
-                        <input type="text" asp-for="NameSurname" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Adınız">
-                        <input type="email" asp-for="Email" class="w-100 form-control p-3 mb-4 border-primary bg-light" placeholder="Email Adresiniz">
-                        <textarea asp-for="Content" class="w-100 form-control mb-4 p-3 border-primary bg-light" rows="4" cols="10" placeholder="Mesajınız"></textarea>
-                        <button class="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill" type="submit">Gönder</button>
-                    </form>
-                </div>
+             
+                @await Component.InvokeAsync("_ContactComponentPartial")
                 @await Component.InvokeAsync("_DefaultContactInfoComponentPartial")
             </div>
         </div>

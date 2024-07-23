@@ -8,5 +8,6 @@ namespace CaterServMongoDbPrjoect.Services.Abstract
         Task<ResultMessageDto> GetMessageByIdAsync(string id);
         Task CreateMessageAsync(CreateMessageDto MessageDto);
         Task DeleteMessageAsync(string id);
+        Task SetMessageReadStatus(string id);
     }
 }

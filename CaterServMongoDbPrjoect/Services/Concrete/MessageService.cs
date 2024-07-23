@@ -45,5 +45,20 @@ namespace CaterServMongoDbPrjoect.Services.Concrete
             return _mapper.Map<ResultMessageDto>(value);
         }
 
+        public async Task SetMessageReadStatus(string id)
+        {
+            var value = await GetMessageByIdAsync(id);
+            
+            if (value.IsRead == true)
+            {
+                value.IsRead = false;
+            }
+            else
+            {
+                value.IsRead = true;
+            }
+            var mappedValue = _mapper.Map<Message>(value);
+            await _messageCollection.FindOneAndReplaceAsync(x => x.MessageId == id, mappedValue);
+        }
     }
 }
