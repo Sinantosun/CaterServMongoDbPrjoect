@@ -3,8 +3,8 @@ Merhaba,
 Bu projede veritabanı olarak MongoDb kullanıldı, ayrıca sweet alert ve viewcomponentslere de yer verildi.
 
 <h1>★ MongoDb Nedir? ★ </h1>
-📌 MongoDB; açık kaynak, NoSQL veritabanı uygulamasıdır. <br>
-📌 MongoDB, verileri JSON benzeri bir veri biçimi olan BSON tabanlı dokümanlarda saklamaktadır<br>
+📌 MongoDB; açık kaynak, NoSQL veritabanı uygulamasıdır. <br><br>
+📌 MongoDB, verileri JSON benzeri bir veri biçimi olan BSON tabanlı dokümanlarda saklamaktadır<br><br>
 
 ★  MongoDb NoSQL bir veri tabanıdır yani ilişkili tablo yapısı buludurmayan bir veritabanıdır.<br>
 
