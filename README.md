@@ -64,7 +64,7 @@ MongoDb kullanırken, ilişkili tablolarınızı bu şekilde kullanabilirsiniz.
 ![admin03](https://github.com/user-attachments/assets/38fef3b2-4222-4f47-a73f-64e1e416e488)
 
 📌 Rezervasyonların listelendiği alandır.<br>
-📌 Burada admin rezervasyon iptal edebilir onaylayabilir veya bekletebilir. ayrı zamanda silme güncelleme ve ekleme de yapabilir.
+📌 Burada admin rezervasyon iptal edebilir onaylayabilir veya bekletebilir. ayrı zamanda silme güncelleme ve ekleme de yapabilir.<br>
 📌 kayıtlar arasında ad soyad'a göre arama işlemi gerçekleştirilebilmektedir.
 
 
